@@ -36,15 +36,24 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    window.onload = () => {
-      setIsLoading(false);
-    };
+  // useEffect(() => {
+  //   window.onload = () => {
+  //     setIsLoading(false);
+  //   };
 
-    // Cleanup
-    return () => {
-      window.onload = null;
-    };
+  //   // Cleanup
+  //   return () => {
+  //     window.onload = null;
+  //   };
+  // }, []);
+
+  useEffect(() => {
+    // Simulate loading delay with setTimeout
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // Change the delay time as needed
+
+    return () => clearTimeout(timeout);
   }, []);
 
   if(isLoading) { 
