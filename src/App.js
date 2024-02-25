@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React, { useRef } from 'react';
+import LandingPage from './LandingPage';
+import AboutUs from './AboutUs';
+import styled from 'styled-components';
+import GamePurchasePage from './GamePurchasePage';
+import Community from './Community';
+import BlackDivider from './BlackDivider';
+import Footer from './Footer';
+
+const AppWrapper= styled.div`
+  overflow: hidden;
+`;
 
 function App() {
+
+  const refAbout= useRef(null);
+  const refGamePurchase= useRef(null);
+  const refCommunity= useRef(null);
+  const refFooter= useRef(null);
+
+  const scrollToRef= function(ref) {
+    if (ref && ref.current) {
+      ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppWrapper>
+      <LandingPage 
+        scrollToAbout={() => scrollToRef(refAbout)} 
+        scrollToPurchase={() => scrollToRef(refGamePurchase)} 
+        scrollToCommunity={() => scrollToRef(refCommunity)}
+        scrollToFooter={() => scrollToRef(refFooter)}
+      />
+      <AboutUs ref={refAbout}></AboutUs>
+      <GamePurchasePage ref={refGamePurchase}></GamePurchasePage>
+      <BlackDivider></BlackDivider>
+      <Community ref={refCommunity}></Community>
+      <Footer ref={refFooter}></Footer>
+    </AppWrapper>
   );
 }
 
