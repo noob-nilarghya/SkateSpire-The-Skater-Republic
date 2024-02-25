@@ -1,5 +1,5 @@
 // App.js
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import LandingPage from './LandingPage';
 import AboutUs from './AboutUs';
 import styled from 'styled-components';
@@ -7,10 +7,19 @@ import GamePurchasePage from './GamePurchasePage';
 import Community from './Community';
 import BlackDivider from './BlackDivider';
 import Footer from './Footer';
+import Spinner from './Spinner';
 
 const AppWrapper= styled.div`
   overflow: hidden;
 `;
+
+const SpinnerWrapper= styled.div`
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 function App() {
 
@@ -23,6 +32,27 @@ function App() {
     if (ref && ref.current) {
       ref.current.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    window.onload = () => {
+      setIsLoading(false);
+    };
+
+    // Cleanup
+    return () => {
+      window.onload = null;
+    };
+  }, []);
+
+  if(isLoading) { 
+    return(
+      <SpinnerWrapper>
+        <Spinner></Spinner>
+      </SpinnerWrapper>
+    );
   }
 
   return (
