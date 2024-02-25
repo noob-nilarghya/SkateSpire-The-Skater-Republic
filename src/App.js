@@ -8,6 +8,7 @@ import Community from './Community';
 import BlackDivider from './BlackDivider';
 import Footer from './Footer';
 import Spinner from './Spinner';
+import LazyLoad from 'react-lazy-load';
 
 const AppWrapper= styled.div`
   overflow: hidden;
@@ -67,12 +68,14 @@ function App() {
 
   return (
     <AppWrapper>
-      <LandingPage 
-        scrollToAbout={() => scrollToRef(refAbout)} 
-        scrollToPurchase={() => scrollToRef(refGamePurchase)} 
-        scrollToCommunity={() => scrollToRef(refCommunity)}
-        scrollToFooter={() => scrollToRef(refFooter)}
-      />
+      <LazyLoad>
+        <LandingPage 
+          scrollToAbout={() => scrollToRef(refAbout)} 
+          scrollToPurchase={() => scrollToRef(refGamePurchase)} 
+          scrollToCommunity={() => scrollToRef(refCommunity)}
+          scrollToFooter={() => scrollToRef(refFooter)}
+        />
+      </LazyLoad>
       <AboutUs ref={refAbout}></AboutUs>
       <GamePurchasePage ref={refGamePurchase}></GamePurchasePage>
       <BlackDivider></BlackDivider>

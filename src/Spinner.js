@@ -40,6 +40,7 @@ const Loader = styled.div`
 
 const StyledSpinner = styled.div`
   margin: 4.8rem auto;
+  padding-bottom: 10vh;
 `;
 
 function Spinner() {
