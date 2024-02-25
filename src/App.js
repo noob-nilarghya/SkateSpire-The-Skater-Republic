@@ -35,10 +35,11 @@ function App() {
   }
 
   const [isLoading, setIsLoading] = useState(true);
+  // const [videoRendered, setVideoRendered] = useState(false);
 
   // useEffect(() => {
   //   window.onload = () => {
-  //     setIsLoading(false);
+  //     setVideoRendered(true);
   //   };
 
   //   // Cleanup
@@ -51,7 +52,7 @@ function App() {
     // Simulate loading delay with setTimeout
     const timeout = setTimeout(() => {
       setIsLoading(false);
-    }, 3000); // Change the delay time as needed
+    }, 5000); // Change the delay time as needed
 
     return () => clearTimeout(timeout);
   }, []);
